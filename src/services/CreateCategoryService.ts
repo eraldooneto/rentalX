@@ -18,6 +18,6 @@ class CreateCategoryService {
 
         this.categoriesRepository.create({ name, description });
     }
-}
+};
 
 export { CreateCategoryService };
