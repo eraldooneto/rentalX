@@ -1,0 +1,8 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "usename": "docker",
+    "password": "ignite",
+    "database": "rentx"
+}

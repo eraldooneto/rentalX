@@ -6,6 +6,8 @@ import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from './swagger.json';
 
+import './database';
+
 
 const app = express();
 const port = 3333;
