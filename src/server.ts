@@ -6,7 +6,7 @@ import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from './swagger.json';
 
-import './database';
+import './database/datasource-config';
 
 
 const app = express();
