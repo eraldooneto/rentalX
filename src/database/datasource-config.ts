@@ -1,13 +1,16 @@
 import { DataSource } from "typeorm"
+import { Category } from "../modules/cars/entities/Category"
+
 
 export const PostgresDataSource = new DataSource({
     type: "postgres",
-    host: "localhost",
+    host: "database_ignite",
     port: 5432,
     username: "docker",
     password: "ignite",
     database: "rentx",
-    migrations: ["./src/database/migrations/*.ts"], 
+    entities: [Category],
+    migrations: ["./database/migrations/*.ts"], 
 })
 
 PostgresDataSource.initialize()

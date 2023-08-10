@@ -14,7 +14,7 @@ services:
 
     volumes:
       - pgdata:/data/postgres
-    
+
   app:
     build: .
     container_name: rentx
@@ -27,3 +27,4 @@ services:
 volumes:
     pgdata:
       driver: local
+
