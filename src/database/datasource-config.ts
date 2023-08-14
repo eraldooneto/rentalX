@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm"
-import { Category } from "../modules/cars/entities/Category"
+//import { Category } from "../modules/cars/entities/Category"
 
 
 export const PostgresDataSource = new DataSource({
@@ -9,8 +9,8 @@ export const PostgresDataSource = new DataSource({
     username: "docker",
     password: "ignite",
     database: "rentx",
-    entities: [Category],
-    migrations: ["./database/migrations/*.ts"], 
+    migrations: ["./src/database/migrations/*.ts"],
+    entities: ["./src/modules/**/entities/*.ts"], 
 })
 
 PostgresDataSource.initialize()
