@@ -10,7 +10,7 @@ export const PostgresDataSource = new DataSource({
     password: "ignite",
     database: "rentx",
     migrations: ["./src/database/migrations/*.ts"],
-    entities: ["./src/modules/**/entities/*.ts"], 
+    entities: ["./src/modules/**/entities/*.ts"],
 })
 
 PostgresDataSource.initialize()
