@@ -18,7 +18,7 @@ class SpecificationsRepository implements ISpecificationsRepository {
         return SpecificationsRepository.INSTANCE;
     }
    
-    private constructor() {
+    constructor() {
         this.specifications = [];
     }
 
