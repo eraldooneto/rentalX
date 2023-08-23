@@ -6,7 +6,9 @@ import swaggerUi from 'swagger-ui-express';
 
 import swaggerDocument from './swagger.json';
 
-import './database/datasource-config';
+import './database';
+
+//import './database/datasource-config';
 
 import './shared/container';
 

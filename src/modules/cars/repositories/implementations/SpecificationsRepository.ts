@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { Repository, getRepository } from "typeorm";
 import { Specification } from "../../entities/Specification";
 
 import { 
@@ -6,13 +6,12 @@ import {
     ISpecificationsRepository
  } from "../ISpecificationsRepository";
  
-import { PostgresDataSource } from "../../../../database/datasource-config";
 
 class SpecificationsRepository implements ISpecificationsRepository {
     private repository: Repository<Specification>; 
    
     constructor() {
-        this.repository = PostgresDataSource.getRepository(Specification);
+        this.repository = getRepository(Specification);
     }
 
     async create({ name, description }: ICreateSpecificationDTO ): Promise<void> {

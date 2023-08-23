@@ -1,7 +1,7 @@
-import { Repository } from "typeorm";
+import { Repository, getRepository } from "typeorm";
 import { Category } from "../../entities/Category";
 import { ICategoriesRepository, ICreateCategoryDTO } from "../ICategoriesRepository";
-import { PostgresDataSource } from "../../../../database/datasource-config";
+
 
 
 class CategoriesRepository implements ICategoriesRepository {
@@ -9,7 +9,7 @@ class CategoriesRepository implements ICategoriesRepository {
     private repository: Repository<Category>;
 
     constructor() {
-        this.repository = PostgresDataSource.getRepository(Category);
+        this.repository = getRepository(Category);
     }
 
    async create({ name, description }: ICreateCategoryDTO): Promise<void> {
