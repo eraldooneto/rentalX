@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { ImportCategoryUseCase } from "./ImportCategoryUseCase";
-import { inject, injectable } from "tsyringe";
 import { container } from "tsyringe";
 
 
