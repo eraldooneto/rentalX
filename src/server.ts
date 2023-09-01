@@ -33,6 +33,7 @@ app.use(
         status: "error",
         message: `Internal server error - ${err.message}` 
     });
+
 });
 
 app.listen(port, () => {
