@@ -30,6 +30,10 @@ export async function ensureAuthenticated(request: Request, response: Response, 
         }
 
         console.log(user_id);
+
+        request.user = {
+            id: user_id
+        }
         
         next();
 
