@@ -1,8 +1,8 @@
-import { AppError } from "../../../../errors/AppError";
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { UsersRepositoryInMemory } from "../../repositories/in-memory/UsersRepositoryInMemory";
-import { CreateUserUseCase } from "../createUser/CreateUserUseCase";
-import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
+import { AppError } from "@shared/errors/AppError";
+import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memory/UsersRepositoryInMemory";
+import { CreateUserUseCase } from "@modules/accounts/useCases/createUser/CreateUserUseCase";
+import { AuthenticateUserUseCase } from "@modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase";
 
 let authenticateUsersUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
@@ -35,12 +35,12 @@ describe("Authenticate User", () => {
     });
 
     it("Should not be able to authenticate an unregistered user", async () => {
-        expect(async () => {
-            await authenticateUsersUseCase.execute({
+        await expect(async () => {
+             authenticateUsersUseCase.execute({
                 email: "false@email.com",
                 password: "1234"
             });
-        }).rejects.toBeInstanceOf(AppError);
+        }).rejects.toEqual(new AppError("Email or password incorrect!"));
     });
 
     it("Should not be able to authenticate an user with incorrect password", async () => {
