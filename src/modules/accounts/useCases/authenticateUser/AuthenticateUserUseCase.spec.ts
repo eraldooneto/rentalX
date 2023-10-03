@@ -35,14 +35,14 @@ describe("Authenticate User", () => {
     });
 
     it("Should not be able to authenticate an unregistered user", async () => {
-        await expect(async () => {
-             authenticateUsersUseCase.execute({
+        await expect(
+            authenticateUsersUseCase.execute({
                 email: "false@email.com",
                 password: "1234"
-            });
-        }).rejects.toEqual(new AppError("Email or password incorrect!"));
+            })
+        ).rejects.toEqual(new AppError("Email or password incorrect!"));
     });
-
+    
     it("Should not be able to authenticate an user with incorrect password", async () => {
         expect(async() => {
             const user: ICreateUserDTO = {
