@@ -4,14 +4,14 @@ import { UsersRepositoryInMemory } from "@modules/accounts/repositories/in-memor
 import { CreateUserUseCase } from "@modules/accounts/useCases/createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "@modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase";
 
-let authenticateUsersUseCase: AuthenticateUserUseCase;
+let authenticateUserUseCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let createUserUserCase: CreateUserUseCase;
 
 describe("Authenticate User", () => {
     beforeEach(() => {
        usersRepositoryInMemory = new UsersRepositoryInMemory();
-       authenticateUsersUseCase = new AuthenticateUserUseCase(usersRepositoryInMemory);
+       authenticateUserUseCase = new AuthenticateUserUseCase(usersRepositoryInMemory);
        createUserUserCase = new CreateUserUseCase(usersRepositoryInMemory)
     });
     
@@ -25,7 +25,7 @@ describe("Authenticate User", () => {
 
         await createUserUserCase.execute(user);
 
-       const result = await authenticateUsersUseCase.execute({
+       const result = await authenticateUserUseCase.execute({
             email: user.email,
             password: user.password
         });
@@ -34,14 +34,14 @@ describe("Authenticate User", () => {
         
     });
 
-    it("Should not be able to authenticate an unregistered user", async () => {
+    it("should not be able to authenticate an nonexistent user", async () => {
         await expect(
-            authenticateUsersUseCase.execute({
-                email: "false@email.com",
-                password: "1234"
-            })
+          authenticateUserUseCase.execute({
+            email: "false@email.com",
+            password: "1234",
+          })
         ).rejects.toEqual(new AppError("Email or password incorrect!"));
-    });
+      });
     
     it("Should not be able to authenticate an user with incorrect password", async () => {
         expect(async() => {
@@ -54,7 +54,7 @@ describe("Authenticate User", () => {
 
             await createUserUserCase.execute(user)
 
-            authenticateUsersUseCase.execute({
+            authenticateUserUseCase.execute({
                 email: user.email,
                 password: "4321"
             });
