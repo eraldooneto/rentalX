@@ -54,7 +54,7 @@ describe("Authenticate User", () => {
 
             await createUserUserCase.execute(user)
 
-            authenticateUserUseCase.execute({
+            await authenticateUserUseCase.execute({
                 email: user.email,
                 password: "4321"
             });
