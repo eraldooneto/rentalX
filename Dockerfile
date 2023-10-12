@@ -2,6 +2,8 @@ FROM node:latest
 
 WORKDIR /usr/app
 
+RUN npm install -g ts-node-dev
+
 COPY package.json ./
 
 RUN npm install
