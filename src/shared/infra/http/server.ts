@@ -6,12 +6,12 @@ import { router } from './routes';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../../../swagger.json';
 
-import '@shared/infra/typeorm';
-
 import '@shared/container';
+import createConnection  from '@shared/infra/typeorm';
 
 import { AppError } from '@shared/errors/AppError';
 
+createConnection();
 
 const app = express();
 const port = 3333;
