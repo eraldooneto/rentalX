@@ -3,6 +3,8 @@ import { ImportCategoryController } from '@modules/cars/useCases/importCategory/
 import { ListCategoryController } from '@modules/cars/useCases/listCategory/ListCategoryController';
 import { Router } from 'express';
 import multer from 'multer';
+import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
+import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
 
 
 
@@ -15,9 +17,9 @@ const createCategoryController = new CreateCategoryController();
 const importCategoryController = new ImportCategoryController();
 const listCategoryController = new ListCategoryController();
 
-categoriesRoutes.post("/", createCategoryController.handle);
+categoriesRoutes.post("/", ensureAuthenticated, ensureAdmin, createCategoryController.handle);
 
-categoriesRoutes.post("/import", upload.single("file"), importCategoryController.handle);
+categoriesRoutes.post("/import", ensureAuthenticated, ensureAdmin, upload.single("file"), importCategoryController.handle);
 
 categoriesRoutes.get("/", listCategoryController.handle);
 
